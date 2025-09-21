@@ -5,15 +5,7 @@
     {{else match headerStyle "Magazine"}}
         {{> "components/header-content"}}
     {{else}}
-        {{#match headerStyle "Landing"}}
-            {{#if @site.members_enabled}}
-                {{#unless @member}}
-                    {{> "components/header-content"}}
-                {{/unless}}
-            {{/if}}
-        {{else}}
-            {{> "components/header-content"}}
-        {{/match}}
+        {{> "components/header-content"}}
     {{/match}}
 
 {{/match}}

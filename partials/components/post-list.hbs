@@ -25,7 +25,13 @@
                             {{#match posts.length ">=" 4}}
                                 {{#get "posts" include="authors" limit="16"}}
                                     {{#foreach posts from="5"}}
-                                        {{> "post-card" lazyLoad=true}}
+                                        {{#if access}}
+                                            {{> "post-card" lazyLoad=true}}
+                                        {{else}}
+                                            {{#has visibility="public"}}
+                                                {{> "post-card" lazyLoad=true}}
+                                            {{/has}}
+                                        {{/if}}
                                     {{/foreach}}
                                 {{/get}}
                             {{/match}}
@@ -33,7 +39,13 @@
                             {{#match posts.length ">=" 10}}
                                 {{#get "posts" include="authors" limit="22"}}
                                     {{#foreach posts from="11"}}
-                                        {{> "post-card" lazyLoad=true}}
+                                        {{#if access}}
+                                            {{> "post-card" lazyLoad=true}}
+                                        {{else}}
+                                            {{#has visibility="public"}}
+                                                {{> "post-card" lazyLoad=true}}
+                                            {{/has}}
+                                        {{/if}}
                                     {{/foreach}}
                                 {{/get}}
                             {{/match}}
@@ -42,14 +54,26 @@
                         {{#match posts.length ">=" 7}}
                             {{#get "posts" include="authors" limit="19"}}
                                 {{#foreach posts from="8"}}
-                                    {{> "post-card" lazyLoad=true}}
+                                    {{#if access}}
+                                        {{> "post-card" lazyLoad=true}}
+                                    {{else}}
+                                        {{#has visibility="public"}}
+                                            {{> "post-card" lazyLoad=true}}
+                                        {{/has}}
+                                    {{/if}}
                                 {{/foreach}}
                             {{/get}}
                         {{/match}}
                     {{else}}
                         {{#get "posts" include="authors" limit="12"}}
                             {{#foreach posts}}
-                                {{> "post-card" lazyLoad=true}}
+                                {{#if access}}
+                                    {{> "post-card" lazyLoad=true}}
+                                {{else}}
+                                    {{#has visibility="public"}}
+                                        {{> "post-card" lazyLoad=true}}
+                                    {{/has}}
+                                {{/if}}
                             {{/foreach}}
                         {{/get}}
                     {{/match}}
@@ -60,19 +84,37 @@
                     {{#match pagination.page 2}}
                         {{#get "posts" include="authors" limit=@config.posts_per_page as |recent|}}
                             {{#foreach recent}}
-                                {{> "post-card"}}
+                                {{#if access}}
+                                    {{> "post-card"}}
+                                {{else}}
+                                    {{#has visibility="public"}}
+                                        {{> "post-card"}}
+                                    {{/has}}
+                                {{/if}}
                             {{/foreach}}
                         {{/get}}
                     {{/match}}
                     {{#foreach posts}}
-                        {{> "post-card" lazyLoad=true}}
+                        {{#if access}}
+                            {{> "post-card" lazyLoad=true}}
+                        {{else}}
+                            {{#has visibility="public"}}
+                                {{> "post-card" lazyLoad=true}}
+                            {{/has}}
+                        {{/if}}
                     {{/foreach}}
                 {{/match}}
 
                 {{!-- Tag and author pages --}}
                 {{#match feed "archive"}}
                     {{#foreach posts}}
-                        {{> "post-card" lazyLoad=true}}
+                        {{#if access}}
+                            {{> "post-card" lazyLoad=true}}
+                        {{else}}
+                            {{#has visibility="public"}}
+                                {{> "post-card" lazyLoad=true}}
+                            {{/has}}
+                        {{/if}}
                     {{/foreach}}
                 {{/match}}
 
